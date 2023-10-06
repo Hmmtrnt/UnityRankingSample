@@ -11,7 +11,7 @@ public class RankingManager : MonoBehaviour
 {
     /*Http通信*/
     // hostURL.
-    const string _hostPass = @"http://localhost/UnityRankingSample/";
+    //const string _hostPass = @"http://localhost/UnityRankingSample/";
     // filePass.
     const string _getPass = @"GetRanking.php";
     const string _postPass = @"PostRanking.php";
@@ -34,7 +34,6 @@ public class RankingManager : MonoBehaviour
     InputField _updateTableField;
     InputField _nameField;
     InputField _scoreField;
-    // データベースの初期化
 
 
     // Start is called before the first frame update
@@ -63,7 +62,7 @@ public class RankingManager : MonoBehaviour
         _colum2TableField.text = @"name";
         _colum3TableField.text = @"score";
         _getTableField.text = @"Ranking";
-        _hostUrlField.text = @"http://localhost/UnityRankingSample/CreateTable.php";
+        _hostUrlField.text = @"http://localhost/UnityRankingSample/";
 
     }
 
@@ -76,7 +75,7 @@ public class RankingManager : MonoBehaviour
     /*ボタンメソッド*/
     public void GetRanking()
     {
-        StartCoroutine(GetRequest(_hostPass, _getPass));
+        StartCoroutine(GetRequest(_hostUrlField.text, _getPass));
     }
 
     public void UpdateRanking()// ランキングの更新
@@ -87,7 +86,7 @@ public class RankingManager : MonoBehaviour
     public void CreateTable()// テーブルの作成
     {
         // 非同期通信がいる、そのため別スレッドにメソッドを実行させる
-        StartCoroutine(PostCreate(_hostPass, _createPass));
+        StartCoroutine(PostCreate(_hostUrlField.text, _createPass));
     }
 
     public void ResetDB()// データベースの初期化
